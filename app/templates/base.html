@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- aos animation  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- G Fond--------------- -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+
+            font-family: "Winky Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 18px;
+            font-style: normal;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            transition: background-color 0.3s ease-in-out;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 75px;
+            width: auto;
+        }
+        @media (max-width: 768px){
+            .logo img {
+            height: 50px;
+            width: auto;
+            
+        }
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar.scrolled .nav-links li a {
+            color: rgb(0, 0, 0);
+        }
+
+        .nav-links li a:hover {
+            color: gray;
+        }
+
+        /* Toggle Button */
+        .menu-toggle {
+            display: none;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .navbar.scrolled .menu-toggle {
+            color: black;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 89px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="logo my-auto" data-aos="slide-right" data-aos-duration="2500">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links my-auto">
+            <li><a class="mx-3" href="#home">Home</a></li>
+            <li><a class="mx-3" href="#about">About</a></li>
+            <li><a class="mx-3" href="#service">Services</a></li>
+            <li><a class="mx-3" href="#contact">Contact</a></li>
+            <li><a class="mx-3" href="#gallery">Gallery</a></li>
+        </ul>
+    </nav>
+
+    {% block main_block %}{% endblock %}
+
+
+    <!-- footer-----------------  -->
+    <div class="footer bg-black text-white py-5" data-aos="fade-right">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <h5>Tembo Factory</h5>
+                    <p class="mt-4">Innovative Solutions for a Better Tomorrow.</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><a href="#home" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="#service" class="text-white text-decoration-none">Services</a></li>
+                        <li><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <p>Email: info@tembofactory.com</p>
+                    <p>Phone: +1 (234) 567-8900</p>
+                    <p>Location: 123 Main Street, NY</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="mb-0">&copy; 2025 Tembo Factory. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        AOS.init();
+
+        window.addEventListener("scroll", function () {
+            var navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        function toggleMenu() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        }
+    </script>
+</body>
+
+</html>
