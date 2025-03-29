@@ -3,6 +3,12 @@
 {% block main_block %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+
 <!-- Full-width Container -->
 <div class="container-fluid" id="home">
     <div class="head-img">
@@ -24,7 +30,7 @@
         </div>
 
         <!-- Text Section -->
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" >
             <p class="text-md-start">
                 Our company is a one-stop solution for all construction, renovation, and custom fabrication needs. We
                 specialize in new product development, turning ideas into reality with cutting-edge technology and
@@ -271,7 +277,7 @@
 <!-- gallery------------------------------------------------------------------------------ -->
 
 <div class="container" id="gallery">
-    <h1 class="d-flex justify-content-center mt-5 pb-5">image <span class="text-danger">Gallery</span></h1>
+    <h1 class="d-flex justify-content-center mt-5 pb-5">image<span class="text-danger">Gallery</span></h1>
     <div class="row g-lg-5 g-1 mb-5">
         <div class="col-3">
             <img data-aos="fade-right" class="img-fluid custom-img" src="https://th.bing.com/th/id/OIP.45BsyxWSiPXqI2LIw1BxxAHaEL?rs=1&pid=ImgDetMain" alt="">
@@ -371,6 +377,16 @@
 
         let target = document.querySelector(".container-fluid.bg-danger");
         observer.observe(target);
+    });
+
+    // hide after load==== 
+    window.addEventListener("load", function () {
+        document.getElementById("loader").style.display = "none";
+    });
+    // Alternative: Show Loader on Form Submission
+    
+    document.querySelector("form").addEventListener("submit", function () {
+        document.getElementById("loader").style.display = "flex";
     });
 </script>
 
