@@ -19,8 +19,3 @@ def Home_view(request):
         form=Contact_form()
     return render(request,"home.html",{"data":qs,"form":form})
 
-
-# def details_view(request,pk):
-#     qs=Services.objects.get(pk=pk)
-#     return render(request,'details.html',{"details":qs})
-
